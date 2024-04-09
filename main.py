@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.openapi.utils import get_openapi
 
 # Import your router from users.py
@@ -12,6 +13,10 @@ app = FastAPI()
 
 # Include routes from users_router
 app.include_router(user_routes)
+
+@app.get("/")
+async def redirect_to_docs():
+    return RedirectResponse(url="/docs")
 
 # Generate custom OpenAPI schema
 def custom_openapi():
