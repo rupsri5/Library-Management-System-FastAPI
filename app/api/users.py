@@ -3,9 +3,9 @@ from app.models.user import Student, StudentIDResponse, StudentUpdate
 from app.database.mongodb import collection
 from bson import ObjectId
 
-app = APIRouter()
+user_routes = APIRouter()
 
-@app.post("/student", response_model=StudentIDResponse, status_code=201, response_model_by_alias=False)
+@user_routes.post("/student", response_model=StudentIDResponse, status_code=201, response_model_by_alias=False)
 def create_student(user: Student):
     try:
         # Check if the student already exists
@@ -22,10 +22,7 @@ def create_student(user: Student):
         student_id = str(inserted_user.inserted_id)
         
         return {
-            "student_id": student_id,
-            "name": created_user["name"],
-            "age": user.age,  
-            "address": user.address  
+            "student_id": student_id
         }
     
     except HTTPException as e:
@@ -35,7 +32,7 @@ def create_student(user: Student):
         raise HTTPException(status_code=500, detail=str(e))
     
     
-@app.get("/student", response_model=list[Student], status_code=200)
+@user_routes.get("/student", response_model=list[Student], status_code=200)
 def students_list(country: str = Query(None, description="To apply filter of country."),
                   city: str = Query(None, description="To filter by city"), 
                   min_age: int = Query(None, description="Only records which have age greater than equal to the provided age should be present in the result.")):
@@ -63,7 +60,7 @@ def students_list(country: str = Query(None, description="To apply filter of cou
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/student/{student_id}", response_model=Student, response_model_by_alias=False, status_code=200)
+@user_routes.get("/student/{student_id}", response_model=Student, response_model_by_alias=False, status_code=200)
 def get_student(student_id: str):
     try:
         # Retrieve the student from the database
@@ -78,7 +75,7 @@ def get_student(student_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.patch("/student/{student_id}", status_code=204)
+@user_routes.patch("/student/{student_id}", status_code=204)
 def update_info(student_id: str, user: StudentUpdate):
     try: 
         student_exist = collection.find_one({"_id": ObjectId(student_id)})
@@ -99,7 +96,7 @@ def update_info(student_id: str, user: StudentUpdate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.delete("/student/{student_id}", status_code=200)
+@user_routes.delete("/student/{student_id}", status_code=200)
 def delete_student(student_id: str):
     try:
         student_exist = collection.find_one({"_id": ObjectId(student_id)})

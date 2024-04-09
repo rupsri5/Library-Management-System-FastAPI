@@ -14,7 +14,7 @@ class Student(BaseModel):
     address: Address = Field(..., description="User's address including city and country")
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "name": "Rupali",
                 "age": 21,
@@ -27,9 +27,6 @@ class Student(BaseModel):
 
 class StudentIDResponse(BaseModel):
     student_id: str
-    name: str
-    age: int
-    address: Address
 
 class StudentUpdate(BaseModel):
     name: Optional[str] = Field(None, description="User's name")
