@@ -10,7 +10,7 @@ class Book(BaseModel):
     price: float = Field(..., description="Price of the book")
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "book_category": "Fiction",
                 "name": "Pearl in Paris",
