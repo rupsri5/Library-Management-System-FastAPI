@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "514efe27-237b-4cad-b66d-b868a90fabc7",
+		"name": "Library-Management-System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26972664"
+	},
+	"item": [
+		{
+			"name": "Ops user signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"token\",jsonData.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_type\": \"ops\",\r\n    \"name\": \"rupali\",\r\n    \"email\": \"rupalisri52@gmail.com\",\r\n    \"password\": \"1234#rup\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/signup",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student user signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"token\",jsonData.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_type\": \"student\",\r\n    \"name\": \"rupali srivastava\",\r\n    \"email\": \"srivastavarupali52@gmail.com\",\r\n    \"password\": \"1234#rup\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/signup",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Student user Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"token\",jsonData.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY2MTUyNjMyNjk0OWUxY2M4OTUxNmIyMiIsInVzZXJfdHlwZSI6InN0dWRlbnQifSwiZXhwIjoxNzEyNjYyNDI2fQ.JEHx79IZ3U7hMVczYVimDg76tsl5ui04Rny-F2rbidA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_type\": \"student\",\r\n    \"name\": \"rupali srivastava\",\r\n    \"email\": \"srivastavarupali52@gmail.com\",\r\n    \"password\": \"1234#rup\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ops user Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"token\",jsonData.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY2MTUyNjMyNjk0OWUxY2M4OTUxNmIyMiIsInVzZXJfdHlwZSI6InN0dWRlbnQifSwiZXhwIjoxNzEyNjYyNDI2fQ.JEHx79IZ3U7hMVczYVimDg76tsl5ui04Rny-F2rbidA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_type\": \"ops\",\r\n    \"name\": \"rupali\",\r\n    \"email\": \"rupalisri52@gmail.com\",\r\n    \"password\": \"1234#rup\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Student {student}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"rupali\",\r\n    \"username\": \"rupali_16\",\r\n    \"age\": 21,\r\n    \"address\": {\r\n        \"city\": \"Delhi\",\r\n        \"country\": \"India\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Students {ops}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/student",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "india",
+							"disabled": true
+						},
+						{
+							"key": "age",
+							"value": "30",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get student by ID {ops}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/student/student_id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student",
+						"student_id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Student {student}",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Poppy\",\r\n    \"username\": \"pop6\",\r\n    \"age\": 10,\r\n    \"address\": {\r\n        \"city\": \"Nevada\",\r\n        \"country\": \"USA\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/student/student_id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student",
+						"student_id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Student {student}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/student/student_id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"student",
+						"student_id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Book {ops}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"book_category\": \"fiction\",\r\n    \"name\": \"Pollen kleen\",\r\n    \"edition\": \"1970\",\r\n    \"price\": 19.90\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/books",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all books",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book {ops}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/books/book_id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"books",
+						"book_id"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "const jsonData = pm.response.json() pm.collectionVariables.set(\"token\",jsonData.token)"
+		}
+	]
+}

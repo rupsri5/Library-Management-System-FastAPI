@@ -6,4 +6,6 @@ load_dotenv()
  
 client = MongoClient(os.getenv("MONGODB_URI"), int(os.getenv("PORT")))
 db = client["libStudents"]
-collection = db["students"]
+collection_st = db["students"]
+collection_u = db["users"]
+collection_b = db["books"]
