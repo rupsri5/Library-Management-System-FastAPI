@@ -25,7 +25,7 @@ def signup(user: User):
         user_id = str(inserted_user.inserted_id)
         token = generate_jwt_token({"_id": user_id, "user_type": created_user["user_type"]})
 
-        return ({"message": "User signup successful", "token": token})  
+        return ({"message": f"{user.user_type} user signup successful", "token": token})  
 
     except HTTPException as e:
         raise e     
@@ -36,13 +36,13 @@ def signup(user: User):
 @user_routes.post("/login", status_code=200)
 def login(user: User):
     try:
-        existing_user = collection_u.find_one({"email": user.email})
+        existing_user = collection_u.find_one({"email": user.email, "user_type": user.user_type})
         if existing_user and pwd_context.verify(user.password, existing_user['password']):
             user_id = str(existing_user["_id"])
             token = generate_jwt_token({"_id": user_id, "user_type": existing_user["user_type"]})
-            return ({"message": "Login successful", "token": token})  
+            return ({"message": f"{user.user_type} user login successful", "token": token})  
         else:
-            raise HTTPException(status_code=401, detail="Invalid credentials")
+            raise HTTPException(status_code=401, detail="Invalid credentials, check email, password and user type combination")
 
     except HTTPException as e:
         raise e
