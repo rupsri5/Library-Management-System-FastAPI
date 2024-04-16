@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.openapi.utils import get_openapi
-from fastapi.security import OAuth2PasswordBearer
+# from fastapi.security import OAuth2PasswordBearer
 
 # Import your router from users.py
 from app.api.users import user_routes
-from app.api.books import book_routes
+# from app.api.books import book_routes
 
 app = FastAPI()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+# oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Mount static files for Swagger UI
 
@@ -17,11 +17,12 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 # Include routes from users_router
 app.include_router(user_routes)
-app.include_router(book_routes)
+# app.include_router(book_routes)
 
 @app.get("/")
 async def redirect_to_docs():
-    return RedirectResponse(url="/docs")
+    return RedirectResponse(url="/docs/")
+
 
 # Generate custom OpenAPI schema
 def custom_openapi():
